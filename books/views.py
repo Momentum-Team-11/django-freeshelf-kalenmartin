@@ -4,6 +4,11 @@ from .forms import BookForm
 
 # Create your views here.
 
+def login(request):
+    if request.user.is_authenticated:
+        return redirect('index')
+    return render(request, "login.html")
+
 def index(request):
     books =  Book.objects.order_by('-created_at')
 

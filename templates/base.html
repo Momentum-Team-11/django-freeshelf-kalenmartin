@@ -8,10 +8,20 @@
 <title>Freeshelf</title>
 </head>
 <header>
-    <a href={% url 'index'%}><h1>Freeshelf</h1></a>
+    <nav>
+        <div>
+            {% if user.is_authenticated %}
+                <a href="{% url 'auth_logout' %}">logout</a>
+            {% else %}
+                <a href="{% url 'auth_login' %}">login</a>
+                <a href="{% url 'registration_register' %}">register</a>
+            {% endif %}
+        </div>
+    </nav>
+    <a href="{% url 'index' %}"><h1>Freeshelf</h1></a>
 </header>
-<body class="sans-serif pv3 ph2">
-    <div class="mw9 center">
+<body>
+    <div class="book_list">
     {% block content %}
     {% endblock %}
     </div>

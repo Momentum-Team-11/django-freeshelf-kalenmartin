@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Home</h1>
+
+<h3>Welcome back!</h3>
+<button><a href={% url 'auth_login' %}>Log In</a></button>
+
+
+<h3>New Here? Sign up!</h3>
+<button><a href={% url 'registration_register' %}>Sign Up</a></button>
+
+{% endblock %}
