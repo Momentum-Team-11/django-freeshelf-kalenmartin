@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>booooooooks</h1>
+
+<div>
+    {% for book in books %}
+        <br><a href="{% url 'details' pk=book.pk %}"><b>{{ book.title }}</b></a>
+        <p>{{ book.author }}</p>
+
+        <a href="{% url 'edit' pk=book.pk %}">Edit Book</a>
+        <br>
+        <a href="{% url 'delete' pk=book.pk %}">Delete Book</a><br><br>
+    {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freeshelf</title>
+</head>
+<header>
+    <a href={% url 'index'%}><h1>Freeshelf</h1></a>
+</header>
+<body class="sans-serif pv3 ph2">
+    <div class="mw9 center">
+    {% block content %}
+    {% endblock %}
+    </div>
+</body>
+</html>

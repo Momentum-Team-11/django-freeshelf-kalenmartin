@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>books</h1>
+
+<div>
+    {% if book %}
+        <p><b>{{ book.title }}</b></p>
+        <p>{{ book.author }}</p>
+        <p>{{ book.decription }}</p>
+        <p>{{ book.URL }}</p>
+        <p>{{ book.created_at }}</p>
+    {% endif %}
+</div>
+
+{% endblock %}
