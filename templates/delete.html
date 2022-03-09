@@ -8,7 +8,7 @@
     {% csrf_token %}
     <p>Delete this book? {{ book.title }}?</p>
 <div>
-    <button type="submit">Delete Book</button><br />
+    <button>Delete Book</button><br />
     <a href="{% url 'index' %}">Cancel</a>
     </div>
     </form>

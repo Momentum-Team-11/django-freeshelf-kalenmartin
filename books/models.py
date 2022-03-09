@@ -19,6 +19,9 @@ class Book(models.Model):
     description = models.TextField(max_length=1000, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     favorite = models.CharField(max_length=1, null=True, blank=True)
+    
+    # genres = models.ManyToManyField("Genre", related_name="books")
+    # favorited_by = models.ManyToManyField("user", related_name="favorite_books")
 
     def __str__(self):
         return self.title
