@@ -59,3 +59,15 @@ def delete(request, pk):
 
     return render(request, "delete.html",
         {"book": book})
+
+
+def favorite(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    if request.method == "GET":
+        favorite = Book
+    else:
+        favorite = Book(request.method == 'POST')
+        Book.objects.filter(pk=book.pk).update(favorite="✔️")
+        return redirect(to='index')
+    return render(request, 'index.html',
+        {"book": book, "favorite": favorite})

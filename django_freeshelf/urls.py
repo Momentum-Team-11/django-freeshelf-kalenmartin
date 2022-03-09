@@ -27,4 +27,5 @@ urlpatterns = [
     path('', books_views.login, name='login'),
     path('auth/', include('registration.backends.simple.urls')),
     path('', books_views.login, name='login'),
+    path('books/<int:pk>/favorite/', books_views.favorite, name='favorite'),
 ]

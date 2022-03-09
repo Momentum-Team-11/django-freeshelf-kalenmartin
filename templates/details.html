@@ -2,7 +2,6 @@
 
 {% block content %}
 
-
 <div>
     {% if book %}
         <p><b><i>{{ book.title }}</i></b></p>
@@ -10,6 +9,8 @@
         <p>{{ book.decription }}</p>
         <p>{{ book.URL }}<p>
         <p>{{ book.created_at }}</p>
+        <p>{{ book.favorite }}</p>
+
     {% endif %}
 </div>
 

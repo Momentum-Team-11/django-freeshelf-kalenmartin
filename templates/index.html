@@ -9,7 +9,12 @@
         <br><a href="{% url 'details' pk=book.pk %}"><b>{{ book.title }}</b></a>
         <p>{{ book.author }}</p>
 
-        <a href="{% url 'edit' pk=book.pk %}">Edit Book</a>
+        <form action="{% url 'favorite' pk=book.pk %}" method="POST">
+            {% csrf_token %} <p>Book is Bae</p>
+            <button>"✔️"</button>
+        <br>
+
+        <a href="{% url 'edit' pk=book.pk %}">Edit Book</a><br>
         <br>
         <a href="{% url 'delete' pk=book.pk %}">Delete Book</a><br><br>
     {% endfor %}
