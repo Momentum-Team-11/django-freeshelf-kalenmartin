@@ -5,7 +5,7 @@ from .forms import BookForm
 # Create your views here.
 
 def index(request):
-    books =  Book.objects.all()
+    books =  Book.objects.order_by('-created_at')
 
     return render(request, "index.html",
         {"books": books})
