@@ -1,7 +1,7 @@
-from operator import truediv
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from multiprocessing import AuthenticationError
+from django.utils.text import slugify
 
 
 class User(AbstractUser):
@@ -19,8 +19,9 @@ class Book(models.Model):
     description = models.TextField(max_length=1000, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     favorite = models.CharField(max_length=1, null=True, blank=True)
-    
-    # genres = models.ManyToManyField("Genre", related_name="books")
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, null=True, related_name="books")
+
     # favorited_by = models.ManyToManyField("user", related_name="favorite_books")
 
     def __str__(self):

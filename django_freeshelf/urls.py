@@ -24,8 +24,7 @@ urlpatterns = [
     path('books/add/', books_views.add, name='add'),
     path('books/<int:pk>/edit/', books_views.edit, name='edit'),
     path('books/<int:pk>/delete/', books_views.delete, name='delete'),
-    path('', books_views.login, name='login'),
+    # path('', books_views.login, name='login'),
     path('auth/', include('registration.backends.simple.urls')),
-    path('', books_views.login, name='login'),
     path('books/<int:pk>/favorite/', books_views.favorite, name='favorite'),
 ]

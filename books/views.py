@@ -1,14 +1,19 @@
+from django.db import models
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Book
+from .models import Book, User
 from .forms import BookForm
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 # Create your views here.
+
 
 def login(request):
     if request.user.is_authenticated:
         return redirect('index')
     return render(request, "login.html")
 
+
+@login_required(login_url="auth_login")
 def index(request):
     books =  Book.objects.order_by('-created_at')
 
@@ -24,19 +29,24 @@ def details(request, pk):
         {"book": book, "form": form, "pk": pk})
 
 
-def add(request):
+@login_required(login_url="auth_login")
+def add(request, pk):
+    user = get_object_or_404(User, pk=pk)
     if request.method == 'GET':
         form = BookForm()
     else:
         form = BookForm(data=request.POST)
         if form.is_valid():
+            book = form.save(commit=False)
+            book.user_id = pk
             form.save()
             return redirect(to='index')
 
     return render(request, "add.html",
-        {"form": form})
+        {"form": form, "user": user})
 
 
+@login_required(login_url="auth_login")
 def edit(request, pk):
     book = get_object_or_404(Book, pk=pk)
     if request.method == 'GET':
@@ -51,6 +61,7 @@ def edit(request, pk):
         {"form": form, "book": book})
 
 
+@login_required(login_url="auth_login")
 def delete(request, pk):
     book = get_object_or_404(Book, pk=pk)
     if request.method == 'POST':
@@ -68,6 +79,6 @@ def favorite(request, pk):
     else:
         favorite = Book(request.method == 'POST')
         Book.objects.filter(pk=book.pk).update(favorite="✔️")
-        return redirect(to='index')
-    return render(request, 'index.html',
+        return redirect(to='favorite')
+    return render(request, "index.html",
         {"book": book, "favorite": favorite})
