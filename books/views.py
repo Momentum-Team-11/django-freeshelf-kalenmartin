@@ -1,7 +1,7 @@
 from unicodedata import category
 from django.db import models
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Book, User
+from .models import Book, Category, User
 from .forms import BookForm
 from django.contrib.auth.decorators import login_required, user_passes_test
 
@@ -86,6 +86,8 @@ def favorite(request, pk):
 
 
 def categories(request, slug):
-    books = Book.objects.filter(category__slug=slug)
-    return render(request, "index.html",
-        {"books": books})
+    categories = get_object_or_404(Category, slug=slug)
+    books = categories.books.all()
+
+    return render(request, "categories.html",
+        {"books": books, "categories": category})

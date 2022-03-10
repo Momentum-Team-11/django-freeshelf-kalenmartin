@@ -28,4 +28,7 @@ urlpatterns = [
     path('auth/', include('registration.backends.simple.urls')),
     path('books/<int:pk>/favorite/', books_views.favorite, name='favorite'),
     path('books/categories/<slug:slug>', books_views.categories, name="categories"),
+    # path("books/<int:pk>/javascript/", books_views.cat_javascript, name="cat_javascript"),
+    # path("books/<int:pk>/python/", books_views.cat_python, name="cat_python"),
+    # path("books/<int:pk>/gaming/", books_views.cat_gaming, name="cat_gaming"),
 ]

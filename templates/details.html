@@ -17,7 +17,7 @@
 
     {% for categories in book.categories.all %}
         {% if book.categories %}
-        <h4>Category: </h4><a href="{% url 'categories' slug=categories.slug %}"><button class="button" title="Disabled button" disabled>{{ categories.name }}</button></a>
+        <h4>Categories: </h4><a href="{% url 'categories' slug=categories.slug %}"><button class="button">{{ categories.name }}</button></a>
         {% endif %}
     {% endfor %}
 
