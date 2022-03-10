@@ -27,6 +27,8 @@ urlpatterns = [
     # path('', books_views.login, name='login'),
     path('auth/', include('registration.backends.simple.urls')),
     path('books/<int:pk>/favorite/', books_views.favorite, name='favorite'),
+    path("books/<int:books_pk>/add_favorite", books_views.add_favorite, name="add_favorite"),
+    # path("books/<int:books_pk>/delete_favorite", books_views.delete_favorite, name="delete_favorite"),
     path('books/categories/<slug:slug>', books_views.categories, name="categories"),
     # path("books/<int:pk>/javascript/", books_views.cat_javascript, name="cat_javascript"),
     # path("books/<int:pk>/python/", books_views.cat_python, name="cat_python"),

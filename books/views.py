@@ -85,6 +85,14 @@ def favorite(request, pk):
         {"book": book, "favorite": favorite})
 
 
+@login_required
+def add_favorite(request, books_pk):
+    books = get_object_or_404(Book, pk=books_pk)
+    user = request.user
+    user.favorite_books.add(books)
+    return redirect(to="index")
+
+
 def categories(request, slug):
     categories = get_object_or_404(Category, slug=slug)
     books = categories.books.all()
