@@ -21,7 +21,7 @@ class Book(models.Model):
     favorite = models.CharField(max_length=1, null=True, blank=True)
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, null=True, related_name="books")
-    categories = models.ManyToManyField("Category", related_name="books", blank=True)
+    category = models.ManyToManyField("Category", related_name="books", blank=True)
 
     # favorited_by = models.ManyToManyField("user", related_name="favorite_books")
 

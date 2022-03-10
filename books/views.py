@@ -93,9 +93,9 @@ def add_favorite(request, books_pk):
     return redirect(to="index")
 
 
-def categories(request, slug):
-    categories = get_object_or_404(Category, slug=slug)
-    books = categories.books.all()
+def category(request, slug):
+    category = get_object_or_404(Category, slug=slug)
+    books = category.books.all()
 
-    return render(request, "categories.html",
-        {"books": books, "categories": category})
+    return render(request, "category.html",
+        {"books": books, "category": category})

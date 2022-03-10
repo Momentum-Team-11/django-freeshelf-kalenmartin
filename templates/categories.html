@@ -2,16 +2,13 @@
 
 {% block content %}
 
-<h1><a href="{% url 'index' %}"><center>Freebook Freeshelf</center></a></h1>
-
 <h1>
-    {{ categories.name }}
+    {{ category.name }}
 </h1>
-
 {% for book in books %}
+<span class="fw7 f4 fw6 db black">{{ book.title }}</span>
+<p class="db black-60 mt2">{{ book.author }}</p>
 
-        <h2>{{ book.title }}</h2>
-        <h3>{{ book.author }}</h3>
 
 {% endfor %}
 {% endblock %}

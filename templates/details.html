@@ -15,10 +15,8 @@
     {% endif %}
 </div>
 
-    {% for categories in book.categories.all %}
-        {% if book.categories %}
-        <h4>Categories: </h4><a href="{% url 'categories' slug=categories.slug %}"><button class="button">{{ categories.name }}</button></a>
-        {% endif %}
+    {% for category in book.categories.all %}
+        <h4>Categories: </h4><a href="{% url 'category' slug=category.slug %}"><button class="button">{{ category.name }}</button></a>
     {% endfor %}
 
 {% endblock %}
