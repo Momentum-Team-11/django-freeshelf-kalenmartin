@@ -12,10 +12,10 @@
 
 <article class="card">
 <header>
-    <nav class="navbar">
+    <nav class="navbar-start">
         <div>
             {% if user.is_authenticated %}
-                <button class="pseudo"><a href="{% url 'auth_logout' %}">logout</a></button>
+                <button class="button is-small is-hovered is-white"><a href="{% url 'auth_logout' %}">logout</a></button>
             {% else %}
                 <a href="{% url 'auth_login' %}">login</a>
                 <a href="{% url 'registration_register' %}">register</a>
