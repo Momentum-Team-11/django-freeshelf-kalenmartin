@@ -17,9 +17,10 @@ def login(request):
 @login_required(login_url="auth_login")
 def index(request):
     books =  Book.objects.order_by('-created_at')
+    categorys = Category.objects.all()
 
     return render(request, "index.html",
-        {"books": books})
+        {"books": books, "categorys": categorys})
 
 
 def details(request, pk):
@@ -95,7 +96,7 @@ def add_favorite(request, books_pk):
 
 def category(request, slug):
     category = get_object_or_404(Category, slug=slug)
-    books = category.books.filter(category__slug=slug)
+    books = category.books.all()
 
-    return render(request, "categories.html",
+    return render(request, "category.html",
         {"books": books, "category": category})
