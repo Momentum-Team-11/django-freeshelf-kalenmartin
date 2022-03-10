@@ -22,8 +22,7 @@ class Book(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, null=True, related_name="books")
     category = models.ManyToManyField("Category", related_name="books", blank=True)
-
-    # favorited_by = models.ManyToManyField("user", related_name="favorite_books")
+    favorite = models.ManyToManyField("user", related_name="favorite_books")
 
     def __str__(self):
         return self.title
