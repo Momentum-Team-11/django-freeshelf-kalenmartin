@@ -21,8 +21,23 @@ class Book(models.Model):
     favorite = models.CharField(max_length=1, null=True, blank=True)
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, null=True, related_name="books")
+    categories = models.ManyToManyField("Category", related_name="books", blank=True)
 
     # favorited_by = models.ManyToManyField("user", related_name="favorite_books")
 
     def __str__(self):
         return self.title
+
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+    slug = models.SlugField(max_length=100, null=True, blank=True)
+    
+    def __str__(self):
+        return self.name
+
+    def __repr__(self):
+        return f"<Category name={self.name}>"
+
+    def save(self):
+        self.slug = slugify(self.name)
+        super().save()
