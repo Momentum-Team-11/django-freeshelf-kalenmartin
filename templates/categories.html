@@ -1,13 +1,14 @@
 {% extends "base.html" %}
-
 {% block content %}
 
+<h1><a href="{% url 'index' %}"><center>Freebook Freeshelf</center></a></h1>
+
 <h1>
-    {{ category.name }}
+    <a href="{% url 'category' slug=category.slug %}"></a>
 </h1>
 {% for book in books %}
-<span class="fw7 f4 fw6 db black">{{ book.title }}</span>
-<p class="db black-60 mt2">{{ book.author }}</p>
+<p>{{ book.title }}</p>
+<p>{{ book.author }}</p>
 
 
 {% endfor %}

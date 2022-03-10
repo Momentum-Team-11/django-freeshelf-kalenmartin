@@ -95,7 +95,7 @@ def add_favorite(request, books_pk):
 
 def category(request, slug):
     category = get_object_or_404(Category, slug=slug)
-    books = category.books.all()
+    books = category.books.filter(category__slug=slug)
 
-    return render(request, "category.html",
+    return render(request, "categories.html",
         {"books": books, "category": category})

@@ -15,7 +15,7 @@
     {% endif %}
 </div>
 
-    {% for category in book.categories.all %}
+    {% for category in book.category.all %}
         <h4>Categories: </h4><a href="{% url 'category' slug=category.slug %}"><button class="button">{{ category.name }}</button></a>
     {% endfor %}
 
