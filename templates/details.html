@@ -2,6 +2,8 @@
 
 {% block content %}
 
+<h1><a href="{% url 'index' %}"><center>Freebook Freeshelf</center></a></h1>
+
 <div>
     {% if book %}
         <h3><b><i>{{ book.title }}</i></b></h3>
@@ -15,7 +17,7 @@
 
     {% for categories in book.categories.all %}
         {% if book.categories %}
-            {{ categories }}
+        <h4>Category: </h4><a href="{% url 'categories' slug=categories.slug %}"><button class="button" title="Disabled button" disabled>{{ categories.name }}</button></a>
         {% endif %}
     {% endfor %}
 
