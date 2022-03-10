@@ -10,8 +10,13 @@
         <p>{{ book.URL }}<p>
         <p>{{ book.created_at }}</p>
         <p>{{ book.favorite }}</p>
-
     {% endif %}
 </div>
+
+    {% for categories in book.categories.all %}
+        {% if book.categories %}
+            {{ categories }}
+        {% endif %}
+    {% endfor %}
 
 {% endblock %}

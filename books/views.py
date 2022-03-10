@@ -1,3 +1,4 @@
+from unicodedata import category
 from django.db import models
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Book, User
@@ -82,3 +83,9 @@ def favorite(request, pk):
         return redirect(to='favorite')
     return render(request, "index.html",
         {"book": book, "favorite": favorite})
+
+
+def categories(request, slug):
+    books = Book.objects.filter(category__slug=slug)
+    return render(request, "index.html",
+        {"books": books})
