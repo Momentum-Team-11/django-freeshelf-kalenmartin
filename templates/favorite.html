@@ -5,11 +5,12 @@
 favorite book
 
 <div>
-    <a href="{% url 'favorite' pk=book.pk %}">
+    <form action="{% url 'favorite' pk=book.pk %}" method="POST">
     {% csrf_token %}
     <label>
         <input type="checkbox">
         <span class="checkable">Book is Bae</span>
     </label>
+    </form>
 </div>
 {% endblock %}

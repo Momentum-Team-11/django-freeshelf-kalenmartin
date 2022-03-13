@@ -14,10 +14,6 @@ def login(request):
     return render(request, "login.html")
 
 
-def book_is_favorite(book, user):
-    return user.favorite_books.filter(pk=book.pk)
-
-
 @login_required(login_url="auth_login")
 def index(request):
     books =  Book.objects.order_by('-created_at')
@@ -30,10 +26,9 @@ def index(request):
 def details(request, pk):
     book = get_object_or_404(Book, pk=pk)
     form = BookForm()
-    favorite = book_is_favorite(book, request.user)
 
     return render(request, "details.html",
-        {"book": book, "form": form, "pk": pk, "favorite": favorite})
+        {"book": book, "form": form, "pk": pk})
 
 
 @login_required(login_url="auth_login")
@@ -79,27 +74,24 @@ def delete(request, pk):
         {"book": book})
 
 
-# def favorite(request, pk):
-#     book = get_object_or_404(Book, pk=pk)
-#     if request.method == "GET":
-#         favorite = Book
-#     else:
-#         favorite = Book(request.method == 'POST')
-#         Book.objects.filter(pk=book.pk).update(favorite="✔️")
-#         return redirect(to='favorite')
-#     return render(request, "index.html",
-#         {"book": book, "favorite": favorite})
-
+def favorite(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    if request.method == "GET":
+        favorite = Book
+    else:
+        favorite = Book(request.method == 'POST')
+        Book.objects.filter(pk=book.pk).update(favorite="✔️")
+        return redirect(to='favorite')
+    return render(request, "index.html",
+        {"book": book, "favorite": favorite})
 
 
 @login_required
-def favorite(request, pk):
-    book = get_object_or_404(Book, pk=pk)
+def add_favorite(request, books_pk):
+    books = get_object_or_404(Book, pk=books_pk)
     user = request.user
-    user.favorite_books.add(book)
-    favorite = book_is_favorite(book, request.user)
+    user.favorite_books.add(books)
     return redirect(to="index")
-
 
 
 def category(request, slug):
