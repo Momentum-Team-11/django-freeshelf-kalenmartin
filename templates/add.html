@@ -1,0 +1,14 @@
+{% block content %}
+
+<h1>Add New Book</h1>
+
+<div>
+    <form action="{% url 'add' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="new_button">
+        <button type="submit">Add New Book</button>
+    </div>
+    </form>
+</div>
+{% endblock %}

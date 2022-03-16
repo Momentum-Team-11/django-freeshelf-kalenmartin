@@ -14,8 +14,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from books import views as books_views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('', books_views.index, name="index"),
+    path('books/<int:pk>/', books_views.details, name="details"),
+    path('books/add/', books_views.add, name='add'),
+    path('books/<int:pk>/edit/', books_views.edit, name='edit'),
+    path('books/<int:pk>/delete/', books_views.delete, name='delete'),
+    # path('', books_views.login, name='login'),
+    path('auth/', include('registration.backends.simple.urls')),
+    path('books/<int:pk>/favorite/', books_views.favorite, name='favorite'),
+    path("books/<int:books_pk>/add_favorite", books_views.add_favorite, name="add_favorite"),
+    path('category/<slug:slug>', books_views.category, name="category"),
+    # path("books/<int:books_pk>/delete_favorite", books_views.delete_favorite, name="delete_favorite"),
+    # path("books/<int:pk>/javascript/", books_views.cat_javascript, name="cat_javascript"),
+    # path("books/<int:pk>/python/", books_views.cat_python, name="cat_python"),
+    # path("books/<int:pk>/gaming/", books_views.cat_gaming, name="cat_gaming"),
 ]

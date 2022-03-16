@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1><a href="{% url 'index' %}"><center>Freebook Freeshelf</center></a></h1>
+
+<div>
+    {% if book %}
+        <h3><b><i>{{ book.title }}</i></b></h3>
+        <p>{{ book.author }}</p>
+        <p>{{ book.decription }}</p>
+        <p>{{ book.URL }}<p>
+        <p>{{ book.created_at }}</p>
+        <p>{{ book.favorite }}</p>
+    {% endif %}
+</div>
+
+{% endblock %}

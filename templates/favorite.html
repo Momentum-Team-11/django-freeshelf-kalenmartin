@@ -1,0 +1,16 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+favorite book
+
+<div>
+    <form action="{% url 'favorite' pk=book.pk %}" method="POST">
+    {% csrf_token %}
+    <label>
+        <input type="checkbox">
+        <span class="checkable">Book is Bae</span>
+    </label>
+    </form>
+</div>
+{% endblock %}
